@@ -48,16 +48,7 @@ core*
 RCS
 SCCS
 
-
-############################################################################
-# Nämä asetukset liittyvät Ohjelmoinnin peruskurssilla siihen, että
-# opiskelijat laittavat Gittiin binäärejä.  Eihän tämä kattava
-# ratkaisu ole, mutta ainakaan harjoitustöiden ja ennakkotehtävien
-# binäärit eivät tule mukaan.  Viikkoharjoitusten ja omien ohjelmien
-# projektit opiskelijat saavat nimetä haluamallaan tavalla: jos mokaa
-# git add:in kanssa, binäärit päätyvät tietovarastoon.
-
-/harjoitustyo-0?/harjoitustyo-0?
-/ennakkotehtava-[01]?/ennakkotehtava-[01]?
-/harjoitustyo-0?/Makefile
-/ennakkotehtava-[01]?/Makefile
+/project-0?/project-0?
+/weekly-assignment-[01]?/weekly-assignment-[01]?
+/project-0?/Makefile
+/weekly-assignment-[01]?/Makefile
