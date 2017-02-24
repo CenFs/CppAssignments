@@ -44,9 +44,9 @@ int main() {
 
     // cout << time_vector.size() << endl;
     sort(time_vector.begin(), time_vector.end());
-    for (Clock &c : time_vector)
+    for (Clock &c : time_vector) {
         c.print();
-
+    }
     return 0;
 }
 
