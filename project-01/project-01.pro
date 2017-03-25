@@ -4,3 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp
+
+HEADERS += \
+    datastructure.hpp \
+    splitter.hpp
