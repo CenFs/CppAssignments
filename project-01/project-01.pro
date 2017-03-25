@@ -7,4 +7,5 @@ SOURCES += main.cpp
 
 HEADERS += \
     datastructure.hpp \
-    splitter.hpp
+    splitter.hpp \
+    datastructureimpl.hpp
