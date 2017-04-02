@@ -1,17 +1,14 @@
-#include "datastructureimpl.hpp"
+#include "datastructure.hpp"
 #include "splitter.hpp"
-
-#include <iostream>
-#include <string>
+#include "commands.hpp"
 #include <fstream>
-#include <sstream>
-#include <iomanip>
 using namespace std;
 
 
 int main() {
     Splitter splitter;
     Datastructure mkts;
+    Commands cmds;
     int error = OK;
 
     ifstream file("products.txt");
@@ -58,13 +55,33 @@ int main() {
         input_splitter.set_string_to_split(input);
         unsigned int input_fields = input_splitter.split(' ');
         command = input_splitter.fetch_field(0);
+        string result = cmds.compare_commands(command, input_fields);
 
         if (input == "quit") {
             return 0;
         } else if (input == "chains") {
             mkts.chains();
             error = OK;
-        } else if (command == "stores") { // stores chain_name
+        } else if (result == "stores") { // stores chain_name
+            string chain_name = input_splitter.fetch_field(1);
+            mkts.stores(chain_name);
+            error = OK;
+        } else if (result == "cheapest") { // cheapest product_name
+            string product_name = input_splitter.fetch_field(1);
+            mkts.cheapest(product_name);
+            error = OK;
+        } else if (result == "selection") { // selection chain_name store_location
+            string chain_name = input_splitter.fetch_field(1);
+            string store_location = input_splitter.fetch_field(2);
+            mkts.selection(chain_name, store_location);
+            error = OK;
+        } else if (result == "chains") {
+            error = WRONG_COMMAND;
+        } else {
+            error = WRONG_COMMAND;
+        }
+
+        /*else if (command == "stores") { // stores chain_name
             if (input_fields == 2) {
                 string chain_name = input_splitter.fetch_field(1);
                 mkts.stores(chain_name);
@@ -95,6 +112,6 @@ int main() {
         } else {
             // cerr << "Error: Wrong command!" << endl;
             error = WRONG_COMMAND;
-        }
+        }*/
     }
 }

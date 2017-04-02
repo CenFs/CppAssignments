@@ -1,12 +1,27 @@
 #ifndef DATASTRUCTURE_HPP
 #define DATASTRUCTURE_HPP
 
+#include <iostream>
 #include <string>
 #include <vector>
-#include <utility>
-#include <algorithm>
 #include <map>
+#include <algorithm>
+#include <iomanip>
+#include <stack>
+#include <utility>
 using namespace std;
+
+
+#define ALL_EXIST 1
+#define NEW_PRODUCT 0
+#define NEW_PRODUCT_PRICE -1
+#define NEW_LOCATION -2
+
+#define OK 200
+#define FAIL_TO_READ_FILE 201
+#define FIELDS_WRONG 202
+#define WRONG_COMMAND 203
+
 
 struct Product {
     string name;
