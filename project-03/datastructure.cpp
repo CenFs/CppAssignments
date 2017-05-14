@@ -56,11 +56,11 @@ void Datastructrue::print() {
             Chore* curr = q_[curr_priority_level-1].get_first();
             Chore* last = q_[curr_priority_level-1].get_last();
             if (curr == last) {
-                cout << "  " << count << "." << curr->description << endl;
+                cout << "  " << count << ". " << curr->description << endl;
                 ++count;
             } else {
                 while (curr != last->next) {
-                    cout << "  " << count << "." << curr->description << endl;
+                    cout << "  " << count << ". " << curr->description << endl;
                     curr = curr->next;
                     ++count;
                 }
