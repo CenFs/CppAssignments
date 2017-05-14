@@ -42,7 +42,10 @@ int main() {
 
             if (result.size() > 0) command = result.str(1);
 
-            if (command == "quit") return 0;
+            if (command == "quit") {
+                data.clear();
+                return 0;
+            }
 
 
             else if (command == "init") {
