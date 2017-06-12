@@ -2,6 +2,8 @@
 // 267936
 // baij@student.tut.fi
 
+// Implement required project functions by calling two classes.
+
 #include "datastructure.hpp"
 
 #include <sstream>
@@ -16,6 +18,8 @@ const string COMMAND = "([[:w:]]*)";
 const string STRING = "(([[:w:]]+[[:space:]]?)*)";
 const string ZERO_OR_MORE_SPACES = "[[:space:]]*";
 
+// If s is string of numbers, return true
+// Else, return false
 bool isnum(string s) {
     stringstream sin(s);
     double t;
@@ -38,18 +42,20 @@ int main() {
     string line;
     string command = "quit";
 
-
+    // Loop and get the command until get "quit"
     while (cout << "chores> " and getline(cin, line)) {
         if (regex_match(line, result, reg)) {
 
             if (result.size() > 0) command = result.str(1);
 
+            // If command is "quit", clear all and end the program
             if (command == "quit") {
                 data.clear();
                 return 0;
             }
 
 
+            // If command is "init" and the number of priority levels > 0, a new priority list is created
             else if (command == "init") {
                 if (result.str(2) == "")
                     cout << "Error: the number of priority levels is missing." << endl;
@@ -60,6 +66,7 @@ int main() {
             }
 
 
+            // If command is "add" and priority level is correct, a new chore will be added to the end of the priority_level's tasks
             else if (command == "add") {
                 if (result.str(2) == "")
                     cout << "Error: priority level and chore description are missing." << endl;
@@ -72,12 +79,14 @@ int main() {
             }
 
 
+            // If command is "print", prints out the current state of the chore list
             else if (command == "print") {
                 if (result.str(2) == "") data.print();
                 else cout << "Error: extra text after print command." << endl;
             }
 
 
+            // If command is "next", prints the chore that the next in turn
             else if (command == "next") {
                 if (result.str(2) == "") data.next();
                 else cout << "Error: extra text after next command." << endl;
@@ -85,6 +94,7 @@ int main() {
 
 
 
+            // If command is "erase" and running number is correct, removes the chore whose running number is running_number from the chore list
             else if (command == "erase") {
                 if (result.str(2) == "")
                     cout << "Error: the running number is missing." << endl;

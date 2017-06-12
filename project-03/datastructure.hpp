@@ -10,20 +10,22 @@ class Datastructrue {
 public:
     Datastructrue();
     ~Datastructrue();
+    // Datastructrue(const Datastructrue&) = delete;
+    // Datastructrue& operator=(const Datastructrue&) = delete;
 
-    // A new priority list is created.
+    // A new priority list is created
     void init(int number_of_priority_levels);
 
-    // A new chore will be added to the end of the priority_level's tasks.
+    // A new chore will be added to the end of the priority_level's tasks
     void add(int priority_level, const string desc);
 
-    // Prints out the current state of the chore list.
+    // Prints out the current state of the chore list
     void print();
 
-    // Prints the chore that the next in turn.
+    // Prints the chore that the next in turn
     void next();
 
-    // Removes the chore whose running number is running_number from the chore list.
+    // Removes the chore whose running number is running_number from the chore list
     void erase(int running_number);
 
     // Number of Chore_list

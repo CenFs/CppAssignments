@@ -1,4 +1,10 @@
-#include <datastructure.hpp>
+// Jingyi Bai
+// 267936
+// baij@student.tut.fi
+
+// Implement all functions defined in class Datastructrue.
+
+#include "datastructure.hpp"
 
 Datastructrue::Datastructrue(): total_priority_levels_{0}, total_chores_{0} {
 }
@@ -14,6 +20,8 @@ void Datastructrue::clear() {
     }
     delete [] q_;
     total_chores_ = 0;
+    total_priority_levels_ = 0;
+    q_ = nullptr;
     /*while (head_ != nullptr) {
         Urgency* remove = head_;
         head_ = head_->next;
@@ -22,6 +30,8 @@ void Datastructrue::clear() {
     }*/
 }
 
+// A new priority list is created
+// If there was an earlier list, it is destroyed and a new one is initialized from scratch
 void Datastructrue::init(int number_of_priority_levels) {
     if (number_of_priority_levels <= 0) {
         cout << "Error: it is not possible to create a priority list with 0 or less levels." << endl;
@@ -37,6 +47,7 @@ void Datastructrue::init(int number_of_priority_levels) {
     }
 }
 
+// A new chore will be added to the end of the priority_level's tasks
 void Datastructrue::add(int priority_level, const string desc) {
     if (priority_level <= 0 || priority_level > total_priority_levels_)
         cout << "Error: priority level must be an integer between 1-" << total_priority_levels_ << "." << endl;
@@ -47,29 +58,21 @@ void Datastructrue::add(int priority_level, const string desc) {
     }
 }
 
+// Prints out the current state of the chore list
 void Datastructrue::print() {
     int count = 1;
     int curr_priority_level = total_priority_levels_;
     while (curr_priority_level > 0) {
         if (!q_[curr_priority_level-1].is_empty()) {
             cout << "Priority level " << curr_priority_level << ":" << endl;
-            Chore* curr = q_[curr_priority_level-1].get_first();
-            Chore* last = q_[curr_priority_level-1].get_last();
-            if (curr == last) {
-                cout << "  " << count << ". " << curr->description << endl;
-                ++count;
-            } else {
-                while (curr != last->next) {
-                    cout << "  " << count << ". " << curr->description << endl;
-                    curr = curr->next;
-                    ++count;
-                }
-            }
+            q_[curr_priority_level-1].print(count);
+            count += q_[curr_priority_level-1].size();
         }
         --curr_priority_level;
     }
 }
 
+// Prints the chore that the next in turn
 void Datastructrue::next() {
     if (total_chores_ == 0)
         cout << "--- no chores left ---" << endl;
@@ -85,7 +88,7 @@ void Datastructrue::next() {
     }
 }
 
-
+// Removes the chore whose running number is running_number from the chore list
 void Datastructrue::erase(int running_number) {
     if (running_number == 0)
         cout << "Error: the running number must be larger than 0." << endl;
@@ -98,26 +101,19 @@ void Datastructrue::erase(int running_number) {
 
         while (count > 0 && curr_priority_level > 0) {
             if (!q_[curr_priority_level-1].is_empty()) {
-                Chore* curr = q_[curr_priority_level-1].get_first();
-                Chore* last = q_[curr_priority_level-1].get_last();
-                if (curr == last) {
-                    --count;
-                    desc = curr->description;
-                } else {
-                    while (count > 0 && curr != last->next) {
-                        --count;
-                        desc = curr->description;
-                        curr = curr->next;
-                    }
-                }
+                int size = q_[curr_priority_level-1].size();
+                if (count <= size) desc = q_[curr_priority_level-1].nth_desc(count);
+                count -= size;
             }
             --curr_priority_level;
         }
+        // cerr << desc << endl;
         q_[curr_priority_level].remove(desc);
         --total_chores_;
     }
 }
 
+// Number of Chore_list
 int Datastructrue::size() const {
     return total_priority_levels_;
 }
