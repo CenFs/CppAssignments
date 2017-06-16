@@ -14,8 +14,9 @@ using namespace std;
 
 
 const string COMMAND = "([[:w:]]*)";
-// const string NUMBER = "([[:digit:]]*)";
-const string STRING = "(([[:w:]]+[[:space:]]?)*)";
+// const string NUMBER = "([[:digit:]]*)"; ^(-?\\d+)(\\.\\d+)?$
+const string FLOAT = "(([[:digit:]]+.[[:digit:]]+)*)";
+const string STRING = "(([[:w:]]+[[:space:]]?([[:digit:]]+.[[:digit:]]+)*[[:space:]]?)*)";
 const string ZERO_OR_MORE_SPACES = "[[:space:]]*";
 
 // If s is string of numbers, return true
